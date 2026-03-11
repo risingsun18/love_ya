@@ -5,21 +5,15 @@ requireAdmin();
 $success = '';
 $error = '';
 
-// Get current settings
 $settings_result = $conn->query("SELECT * FROM settings LIMIT 1");
 $settings = $settings_result->fetch_assoc();
 
-// Get current message
 $msg_result = $conn->query("SELECT * FROM messages ORDER BY id DESC LIMIT 1");
 $current_message = $msg_result->fetch_assoc();
 
-// Get all photos
 $photos_result = $conn->query("SELECT * FROM photos ORDER BY uploaded_at DESC");
-
-// Get login logs
 $logs_result = $conn->query("SELECT * FROM login_logs ORDER BY login_time DESC LIMIT 20");
 
-// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update_message'])) {
         $message = clean_input($_POST['message']);
@@ -95,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
         
         <div class="dashboard-grid">
-            <!-- Edit Love Message -->
             <div class="panel">
                 <div class="panel-header">
                     <span class="panel-icon">✎</span>
@@ -114,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             
-            <!-- Site Settings -->
             <div class="panel">
                 <div class="panel-header">
                     <span class="panel-icon">⚙</span>
@@ -138,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             
-            <!-- Upload Photos -->
             <div class="panel">
                 <div class="panel-header">
                     <span class="panel-icon">▲</span>
@@ -161,7 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             
-            <!-- Upload Music -->
             <div class="panel">
                 <div class="panel-header">
                     <span class="panel-icon">♫</span>
@@ -186,7 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         
-        <!-- Photo Management -->
         <div class="panel full-width">
             <div class="panel-header">
                 <span class="panel-icon">◈</span>
@@ -216,7 +205,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         
-        <!-- Login Logs -->
         <div class="panel full-width">
             <div class="panel-header">
                 <span class="panel-icon">◉</span>
